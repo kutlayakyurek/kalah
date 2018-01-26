@@ -15,7 +15,7 @@ public class Player {
     private Integer id;
     private String name;
     private LinkedHashMap<Integer, Integer> pits;
-    private int kalah;
+    private int kalah = 0;
 
     Player() {
     }
@@ -24,14 +24,9 @@ public class Player {
         this.id = id;
     }
 
-    public Player(Integer id, String name, int kalah) {
+    public Player(Integer id, String name) {
         this.id = id;
         this.name = name;
-        this.kalah = kalah;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public void setId(Integer id) {
@@ -42,19 +37,11 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LinkedHashMap<Integer, Integer> getPits() {
         if (pits == null) {
             pits = new LinkedHashMap<>();
         }
         return pits;
-    }
-
-    public void setPits(LinkedHashMap<Integer, Integer> pits) {
-        this.pits = pits;
     }
 
     public int getKalah() {
@@ -76,6 +63,16 @@ public class Player {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pits=" + pits +
+                ", kalah=" + kalah +
+                '}';
     }
 
 }

@@ -16,8 +16,8 @@ public class GameTest {
     @Test
     public void shouldGameInitializeCorrectly() {
         Game game = new Game(new Player(1), new Player(2));
-        assertNotNull(game.getPlayerOne());
-        assertNotNull(game.getPlayerTwo());
+        assertNotNull(game.getFirstPlayer());
+        assertNotNull(game.getSecondPlayer());
     }
 
 }

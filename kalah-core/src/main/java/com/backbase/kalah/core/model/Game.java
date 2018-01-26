@@ -9,28 +9,20 @@ package com.backbase.kalah.core.model;
  */
 public class Game {
 
-    private Player playerOne;
-    private Player playerTwo;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
     public Game(Player playerOne, Player playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+        this.firstPlayer = playerOne;
+        this.secondPlayer = playerTwo;
     }
 
-    public Player getPlayerOne() {
-        return playerOne;
+    public Player getFirstPlayer() {
+        return firstPlayer;
     }
 
-    public void setPlayerOne(Player playerOne) {
-        this.playerOne = playerOne;
-    }
-
-    public Player getPlayerTwo() {
-        return playerTwo;
-    }
-
-    public void setPlayerTwo(Player playerTwo) {
-        this.playerTwo = playerTwo;
+    public Player getSecondPlayer() {
+        return secondPlayer;
     }
 
 }
