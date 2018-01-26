@@ -1,7 +1,7 @@
-package com.backbase.kalah.core.game;
+package com.ka.kalah.core.game;
 
-import com.backbase.kalah.core.exception.KalahGameException;
-import com.backbase.kalah.core.model.Player;
+import com.ka.kalah.core.exception.KalahGameException;
+import com.ka.kalah.core.model.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

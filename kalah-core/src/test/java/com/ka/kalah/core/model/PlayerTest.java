@@ -1,4 +1,4 @@
-package com.backbase.kalah.core.model;
+package com.ka.kalah.core.model;
 
 import org.junit.After;
 import org.junit.Before;
