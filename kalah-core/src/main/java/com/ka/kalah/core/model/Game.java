@@ -3,7 +3,7 @@ package com.ka.kalah.core.model;
 /**
  * Description: Kalah game model
  * Project: kalah-core
- * Package: com.backbase.kalah.core.game
+ * Package: com.ka.kalah.core.game
  * Author: kakyurek
  * Date: 2018.01.25
  */

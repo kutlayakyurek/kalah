@@ -14,7 +14,7 @@ import static junit.framework.TestCase.assertTrue;
 /**
  * Description: Kalah game test suite
  * Project: kalah-core
- * Package: com.backbase.kalah.core.game
+ * Package: com.ka.kalah.core.game
  * Author: kakyurek
  * Date: 2018.01.25
  */

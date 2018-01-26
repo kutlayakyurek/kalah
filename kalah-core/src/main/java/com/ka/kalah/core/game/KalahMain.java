@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * Description: Main method implementation to test the application on console
  * Project: kalah-core
- * Package: com.backbase.kalah.core.game
+ * Package: com.ka.kalah.core.game
  * Modified By: kakyurek
  * Modification Date: 26.01.2018
  */

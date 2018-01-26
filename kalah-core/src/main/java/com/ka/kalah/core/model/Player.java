@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Description: Kalah game player model
  * Project: kalah-core
- * Package: com.backbase.kalah.core.model
+ * Package: com.ka.kalah.core.model
  * Author: kakyurek
  * Date: 2018.01.25
  */

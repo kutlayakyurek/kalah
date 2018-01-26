@@ -3,7 +3,7 @@ package com.ka.kalah.core.model;
 /**
  * Description: Indicates the result of the players move
  * Project: kalah-core
- * Package: com.backbase.kalah.core.model
+ * Package: com.ka.kalah.core.model
  * Modified By: kakyurek
  * Modification Date: 26.01.2018
  */
