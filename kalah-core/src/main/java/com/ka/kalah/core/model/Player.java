@@ -1,5 +1,6 @@
 package com.ka.kalah.core.model;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
@@ -10,7 +11,9 @@ import java.util.Objects;
  * Author: kakyurek
  * Date: 2018.01.25
  */
-public class Player {
+public class Player implements Serializable {
+
+    private static final long serialVersionUID = 42L;
 
     private Integer id;
     private String name;

@@ -2,8 +2,8 @@ package com.ka.kalah.core.game;
 
 import com.ka.kalah.core.exception.InvalidMoveException;
 import com.ka.kalah.core.model.Player;
+import com.ka.kalah.core.util.PrintBoard;
 
-import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 /**
@@ -36,7 +36,7 @@ final class KalahMain {
         printBoard(firstPlayer, secondPlayer);
 
         while (!gameFinished) {
-            System.out.println(game.getCurrentPlayerName() + " please enter pit(0 For Exit): ");
+            System.out.println(game.getCurrentPlayer().getName() + " please enter pit(0 For Exit): ");
             input = sc.nextInt();
             if (input == 0) {
                 System.out.println("You are exiting the game");
@@ -50,28 +50,12 @@ final class KalahMain {
             }
         }
 
-        Player winner = firstPlayer.getPits().get(kalahIndex) > secondPlayer.getPits().get(kalahIndex) ? firstPlayer : secondPlayer;
+        Player winner = game.getWinner();
         System.out.println("Winner of the game: " + winner);
     }
 
     private static void printBoard(Player firstPlayer, Player secondPlayer) {
-        LinkedHashMap<Integer, Integer> firstPlayerPits = firstPlayer.getPits();
-        LinkedHashMap<Integer, Integer> secondPlayerPits = secondPlayer.getPits();
-        String firstPlayerName = firstPlayer.getName();
-        String secondPlayerName = secondPlayer.getName();
-        int kalahIndex = PITS + 1;
-
-        for (int i = PITS; i >= 1; i--) {
-            System.out.print(secondPlayerPits.get(i) + " ");
-        }
-
-        System.out.println(secondPlayerName + ": " + secondPlayer.getPits().get(kalahIndex));
-
-        for (int i = 1; i <= PITS; i++) {
-            System.out.print(firstPlayerPits.get(i) + " ");
-        }
-
-        System.out.println(firstPlayerName + ": " + firstPlayer.getPits().get(kalahIndex));
+        System.out.println(PrintBoard.getInstance().printBoard(firstPlayer, secondPlayer, PITS));
     }
 
 }

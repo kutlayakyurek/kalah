@@ -1,5 +1,7 @@
 package com.ka.kalah.core.model;
 
+import java.io.Serializable;
+
 /**
  * Description: Kalah game model
  * Project: kalah-core
@@ -7,7 +9,9 @@ package com.ka.kalah.core.model;
  * Author: kakyurek
  * Date: 2018.01.25
  */
-public class Game {
+public class Game implements Serializable {
+
+    private static final long serialVersionUID = 42L;
 
     private Player firstPlayer;
     private Player secondPlayer;
@@ -23,6 +27,14 @@ public class Game {
 
     public Player getSecondPlayer() {
         return secondPlayer;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "firstPlayer=" + firstPlayer +
+                ", secondPlayer=" + secondPlayer +
+                '}';
     }
 
 }

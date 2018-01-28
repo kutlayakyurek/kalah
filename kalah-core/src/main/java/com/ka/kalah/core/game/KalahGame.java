@@ -6,6 +6,7 @@ import com.ka.kalah.core.model.Game;
 import com.ka.kalah.core.model.MoveResult;
 import com.ka.kalah.core.model.Player;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -18,8 +19,9 @@ import java.util.Set;
  * Author: kakyurek
  * Date: 2018.01.25
  */
-public class KalahGame {
+public class KalahGame implements Serializable {
 
+    private static final long serialVersionUID = 42L;
     private static final int MIN_PIT_COUNT = 4;
     private static final int MIN_STONE_COUNT = 1;
 
@@ -82,20 +84,29 @@ public class KalahGame {
         int lastPitIndex = moveResult.getLastPitIndex();
         stonesToMove = moveResult.getStonesToMove();
         Player otherPlayer = getOtherPlayer();
-        currentPlayer = otherPlayer;
 
         // There is still stone to move so continue on players kalah and then opponents pits but not opponents kalah.
         // If last pit is current players pit and its empty, grab opponents stones inside opposite pit and add to current players kalah
         // If last pit plus one is equals to current players kalah, current player continues to play
         if (stonesToMove == 0 && lastPitIndex == kalahIndex) {
-            currentPlayer = getOtherPlayer();
-        } else if (stonesToMove > 0) {
             currentPlayer.setKalah(currentPlayer.getPits().get(kalahIndex));
-            map = otherPlayer.getPits();
-            moveStones(stonesToMove, 0, map, true);
-        } else if (map.get(moveResult.getLastPitIndex()) == 0) {
+        } else if (stonesToMove == 0 && map.get(moveResult.getLastPitIndex()) == 1) {
             int opponentPitIndex = pits - lastPitIndex + 1;
             currentPlayer.setKalah(currentPlayer.getKalah() + otherPlayer.getPits().get(opponentPitIndex));
+            currentPlayer.getPits().put(kalahIndex, currentPlayer.getKalah());
+            otherPlayer.getPits().put(opponentPitIndex, 0);
+            currentPlayer = otherPlayer;
+        } else if (stonesToMove > 0) {
+            while (stonesToMove > 0) {
+                currentPlayer.setKalah(currentPlayer.getPits().get(kalahIndex));
+                map = getOtherPlayer().getPits();
+                moveResult = moveStones(stonesToMove, 0, map, true);
+                stonesToMove = moveResult.getStonesToMove();
+                currentPlayer = getOtherPlayer();
+            }
+            currentPlayer = otherPlayer;
+        } else {
+            currentPlayer = otherPlayer;
         }
 
         // Check if game is finished
@@ -107,6 +118,34 @@ public class KalahGame {
         }
 
         return gameFinished;
+    }
+
+
+    /**
+     * Checks if game is finished on each move
+     *
+     * @return Game status
+     */
+    public boolean isFinished() {
+        Player firstPlayer = game.getFirstPlayer();
+        Player secondPlayer = game.getSecondPlayer();
+        LinkedHashMap<Integer, Integer> firstPlayerPits = firstPlayer.getPits();
+        LinkedHashMap<Integer, Integer> secondPlayerPits = secondPlayer.getPits();
+        int firstPlayerStones = 0;
+        int secondPlayerStones = 0;
+
+        // Calculating stones left in pits of first player
+        for (int i = 1; i <= pits; i++) {
+            firstPlayerStones += firstPlayerPits.get(i);
+        }
+
+        // Calculating stones left in pits of second player
+        for (int i = 1; i <= pits; i++) {
+            secondPlayerStones += secondPlayerPits.get(i);
+        }
+
+        // If either of the amounts zero then the game is finished
+        return firstPlayerStones == 0 || secondPlayerStones == 0;
     }
 
     /**
@@ -167,33 +206,6 @@ public class KalahGame {
     }
 
     /**
-     * Checks if game is finished on each move
-     *
-     * @return Game status
-     */
-    boolean isFinished() {
-        Player firstPlayer = game.getFirstPlayer();
-        Player secondPlayer = game.getSecondPlayer();
-        LinkedHashMap<Integer, Integer> firstPlayerPits = firstPlayer.getPits();
-        LinkedHashMap<Integer, Integer> secondPlayerPits = secondPlayer.getPits();
-        int firstPlayerStones = 0;
-        int secondPlayerStones = 0;
-
-        // Calculating stones left in pits of first player
-        for (int i = 1; i <= pits; i++) {
-            firstPlayerStones += firstPlayerPits.get(i);
-        }
-
-        // Calculating stones left in pits of second player
-        for (int i = 1; i <= pits; i++) {
-            secondPlayerStones += secondPlayerPits.get(i);
-        }
-
-        // If either of the amounts zero then the game is finished
-        return firstPlayerStones == 0 || secondPlayerStones == 0;
-    }
-
-    /**
      * Returns other player
      */
     private Player getOtherPlayer() {
@@ -242,12 +254,41 @@ public class KalahGame {
     }
 
     /**
-     * Returns the players name currently moves on
+     * Returns winner of the game
      *
-     * @return Name of the player
+     * @return Winner of the game
      */
-    public String getCurrentPlayerName() {
-        return currentPlayer.getName();
+    public Player getWinner() {
+        Player firstPlayer = getGame().getFirstPlayer();
+        Player secondPlayer = getGame().getSecondPlayer();
+        return firstPlayer.getKalah() > secondPlayer.getKalah() ? firstPlayer : secondPlayer;
+    }
+
+    /**
+     * Returns current game
+     *
+     * @return Game
+     */
+    public Game getGame() {
+        return game;
+    }
+
+    /**
+     * Returns the player currently moves on
+     *
+     * @return Current player
+     */
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    /**
+     * Return pit settings of game
+     *
+     * @return pit count
+     */
+    public int getPits() {
+        return pits;
     }
 
 }
