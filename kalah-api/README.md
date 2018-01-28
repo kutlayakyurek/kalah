@@ -14,7 +14,6 @@ Linux & Unix
 3. Execute 'nohup java -jar -Dspring.profiles.active=prod kalah-api-1.0-SNAPSHOT.jar > /dev/null 2>&1 &' command
 4. Go to "http://localhost:8080/swagger-ui.html"
     Note: Deployment address and port differs according to your deployment settings
-5. Test it out and enjoy
 
 ## How To Contribute
 
