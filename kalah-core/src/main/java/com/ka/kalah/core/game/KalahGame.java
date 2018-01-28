@@ -157,10 +157,17 @@ public class KalahGame implements Serializable {
         LinkedHashMap<Integer, Integer> firstPlayerPits = firstPlayer.getPits();
         LinkedHashMap<Integer, Integer> secondPlayerPits = secondPlayer.getPits();
 
+        // Calculating kalahs and cleaning all remaining pits
         for (int i = 1; i <= pits; i++) {
             firstPlayer.setKalah(firstPlayer.getKalah() + firstPlayerPits.get(i));
             secondPlayer.setKalah(secondPlayer.getKalah() + secondPlayerPits.get(i));
+            firstPlayerPits.put(i, 0);
+            secondPlayerPits.put(i, 0);
         }
+
+        // Clean kalah indexes
+        firstPlayerPits.put(kalahIndex, 0);
+        secondPlayerPits.put(kalahIndex, 0);
     }
 
     /**
