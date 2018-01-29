@@ -27,7 +27,6 @@ public class PrintBoard {
         LinkedHashMap<Integer, Integer> secondPlayerPits = secondPlayer.getPits();
         String firstPlayerName = firstPlayer.getName();
         String secondPlayerName = secondPlayer.getName();
-        int kalahIndex = pits + 1;
         StringBuilder board = new StringBuilder();
 
         // Preparing second player to the top of the screen

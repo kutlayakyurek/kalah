@@ -29,7 +29,6 @@ final class KalahMain {
         Player secondPlayer = new Player(2, secondPlayerName);
         game.init(firstPlayer, secondPlayer, STONES, PITS);
         int input;
-        int kalahIndex = PITS + 1;
         boolean gameFinished = false;
 
         System.out.println("Welcome to the Kalah Game!");

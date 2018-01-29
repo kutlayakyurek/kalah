@@ -289,13 +289,4 @@ public class KalahGame implements Serializable {
         return currentPlayer;
     }
 
-    /**
-     * Return pit settings of game
-     *
-     * @return pit count
-     */
-    public int getPits() {
-        return pits;
-    }
-
 }

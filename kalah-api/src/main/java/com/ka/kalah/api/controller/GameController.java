@@ -49,7 +49,7 @@ public class GameController {
         int stones = request.getStones() == null ? STONES_DEFAULT : request.getStones();
         String firstPlayerName = request.getFirstPlayer() == null || request.getFirstPlayer().isEmpty() ? DEFAULT_FIRST_PLAYER : request.getFirstPlayer();
         String secondPlayerName = request.getSecondPlayer() == null || request.getSecondPlayer().isEmpty() ? DEFAULT_SECOND_PLAYER : request.getSecondPlayer();
-        GameModel createdGame = gameService.createGame(request.getFirstPlayer(), request.getSecondPlayer(), pits, stones);
+        GameModel createdGame = gameService.createGame(firstPlayerName, secondPlayerName, pits, stones);
         GameResponse response = new GameResponse();
         response.setGame(createdGame.getKalahGame().getGame());
         response.setId(createdGame.getId());
